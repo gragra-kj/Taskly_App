@@ -21,10 +21,11 @@ from users import router as users_api_router
 
 auth_api_url=[]
 if settings.DEBUG:
-    auth_api_url.append(path(r'verify',include('rest_framework.urls')))
+    auth_api_url.append(path(r'verify/',include('rest_framework.urls')))
 
 api_url_pattern=[
-    path(r'accounts/',include(users_api_router.router.urls))
+    path(r'accounts/',include(users_api_router.router.urls)),
+    path(r'auth/',include(auth_api_url))
     
 ]
 
