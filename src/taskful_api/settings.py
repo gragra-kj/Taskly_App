@@ -120,7 +120,7 @@ REST_FRAMEWORK={
 
 AUTHENTICATION_BACKEND={
     'django.contrib.auth.backends.ModelBackend',
-    'rest_framework_social_oauth2.backends.DjangoOAuth2',
+    'rest_framework_social_oauth2.backends.DjangoOAuth2'
 }
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
