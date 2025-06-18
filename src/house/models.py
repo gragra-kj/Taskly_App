@@ -27,4 +27,4 @@ class House(models.Model):
     manager=models.OneToOneField('users.Profile',on_delete=models.SET_NULL,blank=True,null=True,related_name='managed_house')
     points=models.IntegerField(default=0)
     completed_tasks_count=models.IntegerField(default=0)
-    notcompleted_taks_count=models.IntegerField(default=0)
+    notcompleted_tasks_count=models.IntegerField(default=0)
