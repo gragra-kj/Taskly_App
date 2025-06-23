@@ -21,7 +21,7 @@ class GenerateFilePath(object):
         name=f'{instance.id}.{ext}'
         return os.path.join(path,name)
     
-attachment_file_path=GenerateFilePath
+attachment_file_path=GenerateFilePath()
 class TaskList(models.Model):
     created_on=models.DateTimeField(auto_now_add=True)
     completed_om=models.DateTimeField(null=True,blank=True)
