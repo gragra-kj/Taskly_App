@@ -4,7 +4,12 @@ from .models import TaskList,Task,Attachment
 from .permissions import IsAllowedTOEditTaskListElseNone,IsAllowedToEdidTaskElseNone,IsAllowedToEditAttachmentElseNone
 
 
-class TaskListViewset(mixins.CreateModelMixin,mixins.RetrieveModelMixin,mixins.UpdateModelMixin,mixins.DestroyModelMixin,mixins.ListModelMixin,viewsets.GenericViewSet):
+class TaskListViewset(mixins.CreateModelMixin,
+                      mixins.RetrieveModelMixin,
+                      mixins.UpdateModelMixin,
+                      mixins.DestroyModelMixin,
+                      #mixins.ListModelMixin,
+                      viewsets.GenericViewSet):
     queryset=TaskList.objects.all()
     serializer_class=TaskLIstSerializer
     permission_classes=[IsAllowedTOEditTaskListElseNone,]
