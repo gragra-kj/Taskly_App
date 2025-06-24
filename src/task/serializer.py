@@ -19,9 +19,9 @@ class TaskSerializer(serializers.ModelSerializer):
     task_list=serializers.HyperlinkedRelatedField(queryset=TaskList.objects.all(),many=False,view_name='tasklist-detail')
     attachments=serializers.HyperlinkedRelatedField(read_only=True,many=True,view_name='attachment-detail')
     
-    def validate_tasklist(self,value):
+    def validate_task_list(self,value):
         user_profile=self.context['request'].user.profile
-        if value not in user.profile.house.list.all():
+        if value not in user_profile.house.lists.all():
             raise serializers.ValidationError("Task list provided does not belong to house for which user is a member")
         return value
     
@@ -36,7 +36,7 @@ class TaskSerializer(serializers.ModelSerializer):
         model=Task
         fields=['url','id','created_on','completed_on','created_by','completed_by','name','description','status','task_list','attachments']
         
-        read_oly_fields=['created_on','created_by','completed_on','completed_by']       
+        read_only_fields=['created_on','created_by','completed_on','completed_by']       
         
         
 
