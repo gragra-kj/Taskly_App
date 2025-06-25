@@ -5,7 +5,7 @@ from rest_framework import viewsets,mixins,response
 from rest_framework import status as s
 from .models import TaskList,Task,Attachment,COMPLETE,NOT_COMPLETED
 from .permissions import IsAllowedTOEditTaskListElseNone,IsAllowedToEdidTaskElseNone,IsAllowedToEditAttachmentElseNone
-
+from django_filters.rest_framework import DjangoFilterBackend
 
 class TaskListViewset(mixins.CreateModelMixin,
                       mixins.RetrieveModelMixin,
@@ -21,7 +21,10 @@ class TaskListViewset(mixins.CreateModelMixin,
 class TaskViewSet(viewsets.ModelViewSet):
     queryset=Task.objects.all()
     serializer_class=TaskSerializer
-    permission_classes=[IsAllowedToEdidTaskElseNone,]    
+    permission_classes=[IsAllowedToEdidTaskElseNone,]
+    filter_backends=[DjangoFilterBackend]
+    filterset_fields=['status',]
+        
     
     def get_queryset(self):
         queryset=super(TaskViewSet,self).get_queryset()

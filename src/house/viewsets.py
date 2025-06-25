@@ -5,11 +5,14 @@ from .models import House
 from .serializers import HouseSerializers
 from .permissions import IsHouseManagerOrNot
 from django.contrib.auth.models import User
+from django_filters.rest_framework import DjangoFilterBackend
 
 class HouseViewSet(viewsets.ModelViewSet):
     queryset=House.objects.all()
     serializer_class=HouseSerializers
     permission_classes=[IsHouseManagerOrNot, ]
+    filter_backends=[DjangoFilterBackend]
+    filterset_fields=['members']
     
     @action(detail=True,methods=['post'],name='Join',permission_classes=[])
     def join(self,request,pk=None):
