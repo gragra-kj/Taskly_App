@@ -15,7 +15,7 @@ class TaskLIstSerializer(serializers.ModelSerializer):
        
 class TaskSerializer(serializers.ModelSerializer):
     created_by=serializers.HyperlinkedRelatedField(read_only=True,many=False,view_name='profile-detail')
-    completed_on=serializers.HyperlinkedRelatedField(read_only=True,many=False,view_name='profile-detail')
+    completed_by=serializers.HyperlinkedRelatedField(read_only=True,many=False,view_name='profile-detail')
     task_list=serializers.HyperlinkedRelatedField(queryset=TaskList.objects.all(),many=False,view_name='tasklist-detail')
     attachments=serializers.HyperlinkedRelatedField(read_only=True,many=True,view_name='attachment-detail')
     
