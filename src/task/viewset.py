@@ -1,7 +1,7 @@
 from .serializer import TaskLIstSerializer,TaskSerializer,AttachmentSerializer
 from django.utils import timezone
 from rest_framework.decorators import action
-from rest_framework import viewsets,mixins,response
+from rest_framework import viewsets,mixins,response,filters
 from rest_framework import status as s
 from .models import TaskList,Task,Attachment,COMPLETE,NOT_COMPLETED
 from .permissions import IsAllowedTOEditTaskListElseNone,IsAllowedToEdidTaskElseNone,IsAllowedToEditAttachmentElseNone
@@ -22,7 +22,8 @@ class TaskViewSet(viewsets.ModelViewSet):
     queryset=Task.objects.all()
     serializer_class=TaskSerializer
     permission_classes=[IsAllowedToEdidTaskElseNone,]
-    filter_backends=[DjangoFilterBackend]
+    filter_backends=[filters.SearchFilter,DjangoFilterBackend]
+    search_fields=['name','status']
     filterset_fields=['status',]
         
     

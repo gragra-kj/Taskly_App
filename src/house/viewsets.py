@@ -1,4 +1,4 @@
-from rest_framework import viewsets,status
+from rest_framework import viewsets,status,filters
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from .models import House
@@ -11,7 +11,8 @@ class HouseViewSet(viewsets.ModelViewSet):
     queryset=House.objects.all()
     serializer_class=HouseSerializers
     permission_classes=[IsHouseManagerOrNot, ]
-    filter_backends=[DjangoFilterBackend]
+    filter_backends=[filters.SearchFilter,DjangoFilterBackend]
+    search_fields=['=name','description']
     filterset_fields=['members']
     
     @action(detail=True,methods=['post'],name='Join',permission_classes=[])
