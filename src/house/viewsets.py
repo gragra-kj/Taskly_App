@@ -11,7 +11,8 @@ class HouseViewSet(viewsets.ModelViewSet):
     queryset=House.objects.all()
     serializer_class=HouseSerializers
     permission_classes=[IsHouseManagerOrNot, ]
-    filter_backends=[filters.SearchFilter,DjangoFilterBackend]
+    filter_backends=[filters.SearchFilter,DjangoFilterBackend,filters.OrderingFilter]
+    ordering_fields=['points','completed_tasks_count','notcompleted_tasks_count']
     search_fields=['=name','description']
     filterset_fields=['members']
     
