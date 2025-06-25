@@ -119,11 +119,12 @@ Authentication may be required depending on your `permissions.py` setup.
 
 ---
 
-## ✏️ Future Improvements
 
-* Task reminders
-* User notifications
-* House leaderboard based on task completion
+## 📄 Disclaimer
+
+This project was developed as part of the [The Complete Python Django REST API Development Bootcamp](https://www.udemy.com/course/the-complete-python-django-rest-api-development-bootcamp/learn/lecture/24335966#overview) course on Udemy. All core structure and logic are based on the course content by the original instructor. Additional modifications and implementations have been made for learning and portfolio purposes.
 
 ---
+
+
 
