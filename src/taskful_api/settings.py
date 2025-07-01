@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'rest_framework_social_oauth2',
     'django_filters',
     'rest_framework.authtoken',
+    'background_task',
+    'background_jobs',
     'users',
     'house',
     'task',
