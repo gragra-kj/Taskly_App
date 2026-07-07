@@ -23,7 +23,7 @@ from task import router as task_api_router
 from django.conf.urls.static import static
 
 auth_api_url = [
-    path('', include('rest_framework_social_oauth2.urls')),
+   
 ]
 
 if settings.DEBUG:
