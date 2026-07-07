@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'oauth2_provider',
     'social_django',
     # 'rest_framework_social_oauth2',
-    'drf_social_oauth2',
     'django_filters',
     'rest_framework.authtoken',
     'background_task',
@@ -130,14 +129,14 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
-        'drf_social_oauth2.authentication.SocialAuthentication',
+        
     ],
 }
 
-AUTHENTICATION_BACKENDS={
+AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'rest_framework_social_oauth2.backends.DjangoOAuth2'
-}
+    'drf_social_oauth2.backends.DjangoOAuth2',
+]
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
