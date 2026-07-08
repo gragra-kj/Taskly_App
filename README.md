@@ -1,130 +1,251 @@
-# Taskly API
+# 🏠 Taskly API
 
-Taskly is a Django REST Framework-powered backend project that allows registered users to manage tasks within shared houses. It supports authentication, house membership, task list creation, and detailed task tracking, including attachments.
+A Django REST Framework backend for managing tasks within shared houses. Users can create houses, manage members, organize task lists, assign tasks, upload attachments, and track task completion.
 
----
-
-## 🎓 Project Features
-
-### 🏡 User & Profile Management
-
-* Each user has an extended `Profile` linked to Django's `User` model.
-* Users can upload a profile image.
-* Profiles are linked to a house (optional).
-
-### 🏠 House Management
-
-* Create and manage shared houses.
-* Assign a single profile as the house manager.
-* Houses track the number of completed and not completed tasks.
-
-### 🍎 Task & Task List Management
-
-* Houses contain `TaskLists`, each with many `Tasks`.
-* Task lists and tasks track who created and completed them.
-* Tasks can be marked as **Completed** or **Not Completed**.
-* Attachments (e.g. images or files) can be added to tasks.
-
-### 🔑 Authentication
-
-* Token or OAuth2 authentication can be added (based on implementation).
-* Secure access control through DRF permissions and custom validation.
+Built with **Django**, **Django REST Framework**, and deployed on **Render**.
 
 ---
 
-## 🔢 Data Models Overview
+## 🚀 Live API
 
-### 👤 `Profile`
+**Base URL**
 
-* Extends `User`
-* Fields: `image`, `house`
+https://taskly-app-0v4q.onrender.com/api/
 
-### 🏠 `House`
+### Available Endpoints
 
-* Fields: `name`, `image`, `description`, `manager`, `points`, `task counts`
-* Relationships: `members` (Profile), `lists` (TaskList)
-
-### 📂 `TaskList`
-
-* Belongs to a `House`
-* Fields: `name`, `description`, `created_on`, `status`
-* Relationships: `created_by` (Profile), `tasks` (Task)
-
-### ✅ `Task`
-
-* Belongs to a `TaskList`
-* Fields: `name`, `description`, `status`, `created_on`, `completed_on`
-* Relationships: `created_by`, `completed_by` (Profile)
-
-### 📁 `Attachment`
-
-* Belongs to a `Task`
-* Fields: `data (file)`, `created_on`
+| Endpoint | Description |
+|----------|-------------|
+| `/api/` | API Root |
+| `/api/accounts/` | User & Profile APIs |
+| `/api/house/` | House APIs |
+| `/api/task/` | Task, Task Lists & Attachments |
+| `/admin/` | Django Admin |
 
 ---
 
-## ⚙️ Setup Instructions
+# ✨ Features
 
-1. **Clone the repository**
-2. Create a virtual environment and activate it:
+## 👤 User & Profile Management
 
-   ```bash
-   python3 -m venv env
-   source env/bin/activate
-   ```
-3. **Install dependencies**
+- User profiles linked to Django's built-in User model
+- Upload profile images
+- Associate users with houses
 
-   ```bash
-   pip install -r requirements.txt
-   ```
-4. **Apply migrations**
+## 🏠 House Management
 
-   ```bash
-   python manage.py migrate
-   ```
-5. **Run the server**
+- Create houses
+- Assign house managers
+- Manage house members
+- Track completed and incomplete tasks
+- Store house images and descriptions
 
-   ```bash
-   python manage.py runserver
-   ```
-6. **Create superuser (optional)**
+## 📋 Task Lists
 
-   ```bash
-   python manage.py createsuperuser
-   ```
+- Create multiple task lists per house
+- Track creation dates
+- Organize household work
 
----
+## ✅ Task Management
 
-## 🔗 API Endpoints
+- Create tasks
+- Mark tasks as completed
+- Record who created and completed tasks
+- Track completion dates
 
-These depend on your registered routers, but typical examples include:
+## 📎 Attachments
 
-* `GET /api/accounts/profiles/`
-* `GET /api/house/`
-* `GET /api/task/tasklists/`
-* `POST /api/task/tasks/`
-* `POST /api/task/attachments/`
+- Upload files to tasks
+- Store supporting documents or images
 
-Authentication may be required depending on your `permissions.py` setup.
+## 🔒 Permissions
+
+- Read-only access for anonymous users
+- Authenticated users can create and manage resources
 
 ---
 
-## 🌐 Technologies Used
+# 🗂 Data Models
 
-* Python 3.13
-* Django 5.1.7
-* Django REST Framework
-* OAuth2 / Token Authentication (configurable)
-* File uploads with custom paths
+### Profile
+
+- User
+- Image
+- House
+
+### House
+
+- Name
+- Image
+- Description
+- Manager
+- Points
+- Task statistics
+
+### TaskList
+
+- House
+- Name
+- Description
+- Status
+- Created by
+- Created on
+
+### Task
+
+- Task List
+- Name
+- Description
+- Status
+- Created by
+- Completed by
+- Created on
+- Completed on
+
+### Attachment
+
+- Task
+- Uploaded file
+- Created on
 
 ---
 
+# ⚙️ Local Installation
 
-## 📄 Disclaimer
+Clone the repository
 
-This project was developed as part of the [The Complete Python Django REST API Development Bootcamp](https://www.udemy.com/course/the-complete-python-django-rest-api-development-bootcamp/learn/lecture/24335966#overview) course on Udemy. All core structure and logic are based on the course content by the original instructor. Additional modifications and implementations have been made for learning and portfolio purposes.
+```bash
+git clone https://github.com/gragra-kj/Taskly_App.git
+```
+
+Move into the project
+
+```bash
+cd Taskly_App/src
+```
+
+Create a virtual environment
+
+```bash
+python3 -m venv venv
+```
+
+Activate it
+
+Linux/macOS
+
+```bash
+source ../venv/bin/activate
+```
+
+Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+Apply migrations
+
+```bash
+python manage.py migrate
+```
+
+Create a superuser (optional)
+
+```bash
+python manage.py createsuperuser
+```
+
+Run the development server
+
+```bash
+python manage.py runserver
+```
 
 ---
 
+# 🔗 Example API Endpoints
 
+### Accounts
 
+```
+GET /api/accounts/
+```
+
+### Houses
+
+```
+GET /api/house/
+POST /api/house/
+```
+
+### Task Lists
+
+```
+GET /api/task/tasklists/
+POST /api/task/tasklists/
+```
+
+### Tasks
+
+```
+GET /api/task/tasks/
+POST /api/task/tasks/
+```
+
+### Attachments
+
+```
+GET /api/task/attachments/
+POST /api/task/attachments/
+```
+
+---
+
+# 🛠 Technologies Used
+
+- Python 3.12
+- Django 5.2
+- Django REST Framework
+- SQLite (Development)
+- PostgreSQL (Production)
+- Gunicorn
+- WhiteNoise
+- Render
+
+---
+
+# 📁 Project Structure
+
+```
+src/
+├── users/
+├── house/
+├── task/
+├── background_jobs/
+├── taskful_api/
+├── media/
+├── manage.py
+└── requirements.txt
+```
+
+---
+
+# 🌍 Deployment
+
+The project is deployed on **Render** using:
+
+- Gunicorn
+- PostgreSQL
+- WhiteNoise for static files
+- Environment variables for sensitive settings
+
+Live API:
+
+https://taskly-app-0v4q.onrender.com/api/
+
+---
+
+# 📄 Disclaimer
+
+This project was developed while following **The Complete Python Django REST API Development Bootcamp** on Udemy. The original project structure and concepts are based on the course content. Additional modifications, deployment configuration, bug fixes, and improvements were implemented independently for learning and portfolio purposes.
